@@ -1,0 +1,60 @@
+100 '####################
+110 '# TITLE
+120 '#  MSX BASIC FILE LAUNCHER
+130 '# Version
+140 '#  1.0.0
+150 '# LICENSE
+160 '#  These codes are licensed under CC0.
+170 '#  http://creativecommons.org/publicdomain/zero/1.0/deed.ja
+180 '#  Nasubi-K.T is marked with CC0 1.0
+190 '####################
+200 '## Initialize
+210 SCREEN 1,0
+220 COLOR 15,4,7
+230 SCREEN 1,0
+240 WIDTH 31
+250 KEY OFF
+260 CLS
+270 DEFINT A-Z
+280 XC=0
+290 YC=0
+300 AV=&H1800
+310 WK$=""
+320 FL$=""
+330 SPRITE$(0)="@`pxp`@"
+340 LOCATE 0,0
+350 FILES "A:"
+360 '## Main Loop
+370 PUT SPRITE0,(XC*8,YC*8),8
+380 S=STICK(0)+STICK(1)
+390 XS=(S=7)-(S=3)
+400 YS=(S=1)-(S=5)
+410 AN=AV+(YC+YS)*32+XC+(XS*13)
+420 MC=VPEEK(AN+1)
+430 SA=STRIG(0)+STRIG(1)
+440 IF SA THEN 520
+450 XC=XC+(XS*13)
+460 IF XC>13 THEN XC=13
+470 IF XC<0 THEN XC=0
+480 YC=YC+YS
+490 IF YC>20 THEN YC=20
+500 IF YC<0 THEN YC=0
+510 GOTO 360
+520 '## Get selected filename
+530 IF MC=32 THEN 360
+540 FL$=""
+550 FOR I=1 TO 12
+560  FL$=FL$+CHR$(VPEEK(AN+I))
+570 NEXT I
+580 '## Executable file or not
+590 WK$=RIGHT$(FL$,3)
+600 IF WK$="BAS" THEN 630
+610 IF WK$="EXE" THEN 630
+620 GOTO 360
+630 '## Execute the file
+640 WK$="RUN "+FL$
+650 LOCATE 0,22
+660 PRINT WK$
+670 PUT SPRITE0,(0,208),0
+680 RUN FL$
+
