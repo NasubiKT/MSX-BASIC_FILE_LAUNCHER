@@ -27,6 +27,11 @@ Disk BASIC version 2.0 の機能(ディレクトリ等)には対応していま�
 - バグの修正依頼は受け付けておりません。  
 利用者の責任において修正してください。  
 
-## ライセンスについて
+## License
 - ライセンスはCC0 1.0としましたので、改変および再配布に制限はありません。  
-https://creativecommons.org/publicdomain/zero/1.0/deed.ja
+
+These codes are licensed under CC0.
+
+[![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png "CC0")](http://creativecommons.org/publicdomain/zero/1.0/deed.ja)
+
+
